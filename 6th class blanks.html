@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10-Question Quiz with Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .quiz-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      width: 500px;
+      max-width: 100%;
+      text-align: left;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    .form-field {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+
+    .submit-button {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #2196f3;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background-color: #1e88e5;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .correct {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .wrong {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <h2>10-Question Quiz</h2>
+    <form id="quizForm">
+      <!-- Question Template -->
+      <div class="question" id="question1">
+        <label>Each Rectangle in Worksheet is called a _____________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+      
+      <div class="question" id="question2">
+        <label>2. Cells are the basic building of a ________________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question3">
+        <label>3. A file is a _______________ of data?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question4">
+        <label>4. MS-Word products ____________ free documents?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question5">
+        <label>5. The _____________ of a selected cell appears in the name box</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question6">
+        <label>6. Language is a ______________ to express of our feelings</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question7">
+        <label>7. A Group of cells is known as a _________________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question8">
+        <label>8. A Cell is the intersection of a_______________  and _____________ ?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question9">
+        <label>9. File of the same type have common ________________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question10">
+        <label>10. Third language is also called as human friendly language (True/false)</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <!-- Submit button -->
+      <button type="button" class="submit-button" onclick="checkAnswers()">Submit</button>
+    </form>
+    <!-- Feedback section -->
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      // Answers for each question
+      const answers = [
+        "Cell",                 // Question 1
+        "Worksheet",            // Question 2
+        "Collection",       	// Question 3
+        "Error",           	// Question 4
+        "Cell Address",     	// Question 5
+        "Medium",               // Question 6
+        "Cell Range", 		// Question 7
+        "Column Row",           // Question 8
+        "extension",    	// Question 9
+        "True"                  // Question 10
+      ];
+
+      // Feedback container
+      const feedback = document.getElementById("feedback");
+      feedback.innerHTML = ""; // Clear previous feedback
+
+      // Loop through each question and check answers
+      for (let i = 0; i < answers.length; i++) {
+        const userAnswer = document.getElementById("question" + (i + 1)).querySelector("input").value.trim();
+        const correctAnswer = answers[i];
+        
+        // Generate feedback message for each question
+        if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+          feedback.innerHTML += `<div class='feedback correct'>Question ${i + 1}: Correct!</div>`;
+        } else {
+          feedback.innerHTML += `<div class='feedback wrong'>Question ${i + 1}: Wrong! The correct answer is ${correctAnswer}.</div>`;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

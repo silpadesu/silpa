@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10-Question Quiz with Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .quiz-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      width: 500px;
+      max-width: 100%;
+      text-align: left;
+    }
+
+    .question {
+      margin-bottom: 15px;
+    }
+
+    .form-field {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+
+    .submit-button {
+      padding: 10px 20px;
+      font-size: 1em;
+      color: #fff;
+      background-color: #2196f3;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background-color: #1e88e5;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 4px;
+    }
+
+    .correct {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .wrong {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="quiz-container">
+    <h2>10-Question Quiz</h2>
+    <form id="quizForm">
+      <!-- Question Template -->
+      <div class="question" id="question1">
+        <label>1. ______________ describes discarded electronic devices</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+      
+      <div class="question" id="question2">
+        <label>2. ________________ are the basic building blocks of a work sheet?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question3">
+        <label>3. ________________ is a wonderful drawing program?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question4">
+        <label>4. In shops computers are used for _______________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question5">
+        <label>5. MS-Excel is an electronic ________________</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question6">
+        <label>6. The file extension for a image file is _____________</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question7">
+        <label>7. The tool used to change the colour style and thickness of existing lines ________________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question8">
+        <label>8. The tool used to draw circles and ovals _____________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question9">
+        <label>9. The tool used to point freely on the stage with brush _______________?</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <div class="question" id="question10">
+        <label>10. The tool used to reshape lines and shapes _____________</label>
+        <input type="text" class="form-field" placeholder="Your answer" required>
+      </div>
+
+      <!-- Submit button -->
+      <button type="button" class="submit-button" onclick="checkAnswers()">Submit</button>
+    </form>
+    <!-- Feedback section -->
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    function checkAnswers() {
+      // Answers for each question
+      const answers = [
+        "E-Waste",              // Question 1
+        "Cells",            	// Question 2
+        "Tux Paint",       	// Question 3
+        "Printing bills",       // Question 4
+        "Spread Sheet program", // Question 5
+        ".jpg",               	// Question 6
+        "Ink bottle tool", 	// Question 7
+        "Oval Tool",           	// Question 8
+        "Flash Brush tool",    	// Question 9
+        "Arrow"                 // Question 10
+      ];
+
+      // Feedback container
+      const feedback = document.getElementById("feedback");
+      feedback.innerHTML = ""; // Clear previous feedback
+
+      // Loop through each question and check answers
+      for (let i = 0; i < answers.length; i++) {
+        const userAnswer = document.getElementById("question" + (i + 1)).querySelector("input").value.trim();
+        const correctAnswer = answers[i];
+        
+        // Generate feedback message for each question
+        if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+          feedback.innerHTML += `<div class='feedback correct'>Question ${i + 1}: Correct!</div>`;
+        } else {
+          feedback.innerHTML += `<div class='feedback wrong'>Question ${i + 1}: Wrong! The correct answer is ${correctAnswer}.</div>`;
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
